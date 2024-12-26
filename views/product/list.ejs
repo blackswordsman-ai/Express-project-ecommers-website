@@ -1,0 +1,35 @@
+<% title='Product List' %>
+<h1>Product List</h1>
+
+
+<div class="center">
+    <ul>
+      <% products.forEach(product => { %>
+        <li><%= product.name.toUpperCase() %></li>
+      <% }); %>
+    </ul>
+  </div>
+
+
+  <nav aria-label="Page navigation example" style="margin:auto;">
+
+
+    <% if (pagination.hasPrevPage) { %>
+      <a href="?page=1">&laquo; first</a>
+      <a href="?page=<%= pagination.prevPage %>">&laquo; previous</a>
+    <% } %>
+ 
+    <% for (let page_number = 1; page_number <= pagination.totalPages; page_number++) { %>
+      <% if (pagination.page === page_number) { %>
+        <span ><%= page_number %></span>
+      <% } else { %>
+        <a href="?page=<%= page_number %>"><%= page_number %></a>
+      <% } %>
+    <% } %>
+ 
+    <% if (pagination.hasNextPage) { %>
+      <a href="?page=<%= pagination.nextPage %>" >next &raquo;</a>
+      <a href="?page=<%= pagination.totalPages %>">last &raquo;</a>
+    <% } %>
+ 
+  </nav>
